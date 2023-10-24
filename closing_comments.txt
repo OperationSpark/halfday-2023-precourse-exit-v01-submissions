@@ -1,0 +1,19 @@
+
+1. Did you experience extenuating circumstances when taking the assessment?
+   > [ex. Computer froze and it took 15 minutes to fix]
+TODO: Describe any issues that occurred, what happened, time to fix the problem.
+
+
+
+
+
+2. Were you able to complete the assessment in total, all tests passing?
+
+
+
+
+3. Do you have additional comments regarding the administration and/or content of the assessment?
+
+
+
+
