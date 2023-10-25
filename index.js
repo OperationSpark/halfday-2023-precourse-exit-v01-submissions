@@ -46,6 +46,21 @@ const customers = [
  */
 const customersFilteredAndMapped = customers => {
   // Your code here
+  let newArr = customers.map((customer) => {//alters each customer so that the lat and lon key-value pairs are replaced with a dist key-value pair using the calcDist function
+    let customerLoc = { ...customer };//repeatedly creates two temporary object clones to use without altering the original input objects (each customer)
+    let tempCustomer = { ...customer };
+    delete (tempCustomer.lat);//deletes the lat and lon from the tempCustomer so that they may be replaced with dist later on
+    delete (tempCustomer.lon);
+    delete (customerLoc.tel);//deletes everything except the lat and lon from customerLoc so that it may be used to get the customer's distance from the antenna later on
+    delete (customerLoc.name);
+    let numHolder = calcDist(antennaLocation, customerLoc);//the distance between the customer an the antenna is calculated using ca;cDist and then assigned to a variable
+    tempCustomer.dist = Math.floor(numHolder) + "km";//tempCustomer is given a new key of the name "dist", which is assigned the number of km between the customer and the antenna rounded down to the nearest integer
+    return tempCustomer//returns tempCustomer as an output to be used as an input in the filter function
+  }).filter((customer) => {//removes all customers from the array who have a dist value above 55km
+    let comparisonNumber = customer.dist.slice(0, 2)//removes the "km" from the distance variable of the customer and assigns it to a new variable to save it for use later in the filter function
+    return comparisonNumber <= 55;//this gets rid of all the customers in newArr that are over 55km away from the antenna
+  });
+  return newArr;//main output
 };
 
 /**
@@ -53,6 +68,22 @@ const customersFilteredAndMapped = customers => {
  */
 const customersReduced = customers => {
   // Your code here
+  let result = customers.reduce((newArr, customer) => {//alters each customer so that the lat and lon key-value pairs are replaced with a dist key-value pair using the calcDist function
+    let customerLoc = { ...customer };//repeatedly creates two temporary object clones to use without altering the original input objects (each customer)
+    let tempCustomer = { ...customer };
+    delete (tempCustomer.lat);//deletes the lat and lon from the tempCustomer so that they may be replaced with dist later on
+    delete (tempCustomer.lon);
+    delete (customerLoc.tel);//deletes everything except the lat and lon from customerLoc so that it may be used to get the customer's distance from the antenna later on
+    delete (customerLoc.name);
+    let numHolder = calcDist(antennaLocation, customerLoc);//the distance between the customer an the antenna is calculated using ca;cDist and then assigned to a variable
+    tempCustomer.dist = Math.floor(numHolder) + "km";//tempCustomer is given a new key of the name "dist", which is assigned the number of km between the customer and the antenna rounded down to the nearest integer
+    let comparisonNumber = tempCustomer.dist.slice(0, 2)//removes the "km" from the distance variable of the customer and assigns it to a new variable to save it for use later in the reduce function
+    if (comparisonNumber <= 55) {
+      newArr.push(tempCustomer);//adds the altered customer onto the newArr if the distance between the customer and the antenna is below 55
+    }
+    return newArr//the output that is ultimately returned by the main output
+  }, [])
+  return result;//main output
 };
 
 /**
