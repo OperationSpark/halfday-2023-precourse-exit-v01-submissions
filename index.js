@@ -8,6 +8,7 @@
  */
 let replaceKeysInObj = (obj, targetKey, newKey) => {
   // your code here
+
 };
 
 /**
@@ -36,6 +37,30 @@ const customers = [
  */
 const customersFilteredAndMapped = customers => {
   // Your code here
+
+  let result = customers.map(customer => {
+
+    let location = { lat: customer.lat, lon: customer.lon }
+
+    let distance = Math.round(calcDist(location, antennaLocation))
+    customer.dist = distance.toString() + 'km'
+
+    customer = Object.keys(customer).filter(key => key !== 'lat' && key !== 'lon')
+      .reduce((obj, key) => {
+        obj[key] = customer[key];
+        return obj;
+      }, {});
+
+    return customer
+
+  }).filter(customer => {
+    if (customer.dist <= '55km') {
+
+      return true
+    }
+  })
+
+  return result
 };
 
 /**
