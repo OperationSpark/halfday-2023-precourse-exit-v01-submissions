@@ -8,6 +8,27 @@
  */
 let replaceKeysInObj = (obj, targetKey, newKey) => {
   // your code here
+  //  I - obj,targetKey,newKey
+  //  O - all keys thst pass targetKey and push to new Key
+  //  C - preserve the original obj
+  //  E -
+  // base
+  //
+  // check if obj key is the same as the target
+  // if is then rename the key vaule pair to newKey
+  console.log(obj[targetKey])
+  if (!obj[targetKey]) {
+
+  }
+  if (obj[targetKey]) {
+    obj[targetKey] =
+      console.log(obj[targetKey])
+  }
+
+
+
+
+
 };
 
 /**
@@ -36,6 +57,24 @@ const customers = [
  */
 const customersFilteredAndMapped = customers => {
   // Your code here
+
+
+
+
+  for (let i = 0; i < customers.length; i++) {
+    const point = { lat: customers[i].lat, lon: customers[i].lon }
+    const dist = calcDist(point, antennaLocation)
+    customers[i].dist = dist
+    //customers.filter(customers => customers.dist <= 55)
+
+
+
+    console.log(customers[i].dist)
+  }
+
+
+
+
 };
 
 /**
