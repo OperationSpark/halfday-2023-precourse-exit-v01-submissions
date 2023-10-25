@@ -8,6 +8,34 @@
  */
 let replaceKeysInObj = (obj, targetKey, newKey) => {
   // your code here
+  //base case
+  //if obj is not an obj or if it is null return it
+  if (typeof obj !== 'object') {
+    return obj;
+  }
+  if (typeof obj === null) {
+    return obj;
+  }
+  //check if the current obj has a target key
+  if (targetKey in obj) {
+
+    //replace the target key with the new key and preserve the value
+    obj[newKey] = obj[targetKey];
+
+    //delete the property with the old key to complete the replacement
+    delete obj[targetKey];
+  }
+    //recursively update keys in nested obj
+  for (let key in obj){
+//recursive call to handle the nested obj
+  obj[key] = replaceKeysInObj(obj[key], targetKey, newKey);
+}
+
+  //how to delete or replace a key or property of an obj
+
+
+
+  return obj;
 };
 
 /**
@@ -35,13 +63,75 @@ const customers = [
  * Solve by chaining native methods of map and filter only
  */
 const customersFilteredAndMapped = customers => {
-  // Your code here
+//define the max distance in km(55)
+const maxDistance = 55;
+//use filter to select the customers within the max distance
+const filteredCustomers = customers.filter(customer => {
+  //calculate the distance between antennaLocation and the current customer
+  const dist = calcDist(antennaLocation, customer);
+  //return true if customer is within the max diatance, false otherwise
+  return dist <= maxDistance;
+});
+//use map to transform filtered customers and include distance info
+const mappedCustomers = filteredCustomers.map(customer => {
+  //destructure customer obj properties
+const { tel, name} = customer;
+//calculate the distance between antennaLocation and the current customer
+const dist = calcDist(antennaLocation, customer);
+//return a new obj with customer details and calcualted distance
+return{
+  dist,
+  tel,
+  name,
+dist: dist.toFixed(2) + 'km',
+
+
+}
+
+
+//return the mapped customers array
+})
+console.log()
+console.log(mappedCustomers)
+return mappedCustomers;
+
+
 };
 
 /**
  * Solve by using native method of reduce only
  */
 const customersReduced = customers => {
+//define the max distance in km (55)
+const maxDistance = 55;
+
+//use reduce method to filter and map customers, accumulating results in the accumalator
+const customersFilteredAndMapped = customers.reduce((accumulator, customer) =>{
+  //calculate the distance between antennaLocation and the current customer
+const dist = calcDist(antennaLocation, customer);
+//check if the customer is within the max distance
+if(dist<= maxDistance){
+//destructure customer obj properties
+const {name, tel, dist} = customer;
+//push a new obj with customer details and calculated distance rounded
+accumulator.push({
+  dist,
+  tel,
+  name,
+
+})
+}
+//return the accumulator for the next iteration
+return accumulator
+
+}, []);// initalize the accumulator as an empty array
+
+return customersFilteredAndMapped;
+
+
+
+
+
   // Your code here
 };
 
