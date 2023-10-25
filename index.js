@@ -8,6 +8,16 @@
  */
 let replaceKeysInObj = (obj, targetKey, newKey) => {
   // your code here
+  for (let key in obj) {//iterates through the currently-selected object or inner-object
+    if (key === targetKey) {//when the targetKey is found...
+      obj[newKey] = obj[key];//a new key-value pair is created with the key of the inputted newKey and the value of the value linked to the found targetKey
+      delete (obj[key]);//the targetKey and it's value are deleted to make sure that the total number of key-value pairs do not change
+    }
+    if (typeof (obj[key]) === "object") {//checks to see if a key's value is an object, and if it is, recalls the function to run within that inner-object
+      replaceKeysInObj(obj[key], targetKey, newKey);//recursive case (constraint)
+    }
+  }
+  return obj;//base case that returns the altered object as the output (ends the function when the last iteration of the for loop has finished going through the last available object or sub-object)
 };
 
 /**
