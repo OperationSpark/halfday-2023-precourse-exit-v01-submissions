@@ -8,6 +8,35 @@
  */
 let replaceKeysInObj = (obj, targetKey, newKey) => {
   // your code here
+  //i : obj and target key and the new name for the key
+  //o : object with renamed keys
+  //constraints: the object is nested
+  //edge cases: the nested objects
+
+  //for each key in obj, we need to check if its name is equal to target key
+  //if the key name is equal to the target key, set the keys name to newKey
+  //if the object is nested, recurse the funtion inside of the if statement to do it for each nested key
+
+
+  for (const key in obj) {
+
+    if (key === targetKey) {
+
+      key = newKey
+    }
+
+
+    if (typeof key === "object") {
+      return replaceKeysInObj(obj, targetKey, newKey)
+    }
+
+
+    return replaceKeysInObj(obj, targetKey, newKey)
+
+  }
+
+
+  return obj
 };
 
 /**
@@ -36,6 +65,37 @@ const customers = [
  */
 const customersFilteredAndMapped = customers => {
   // Your code here
+
+
+  //i : customers
+  //o : array of objects
+  //constraints:
+  //edge cases:
+
+
+  //we start by filtering customers by the ones that are within 55 km of the tower
+  //then we use map to make a new key called dist and add it to each customer
+  //remove lat and lon keys
+
+
+  const result = customers.filter((customer) => calcDist(antennaLocation, customer) <= 55)
+
+  result.map((customer) => {
+    customer.dist = `${Math.round(calcDist(antennaLocation, customer))} km`
+    // delete customer.lat
+    // delete customer.lon
+  })
+
+
+  console.log(result)
+  return result
+
+
+
+
+
+
+
 };
 
 /**
@@ -43,6 +103,27 @@ const customersFilteredAndMapped = customers => {
  */
 const customersReduced = customers => {
   // Your code here
+
+  //i : customers
+  //o : array of objects
+  //constraints:
+  //edge cases:
+
+  //since we cant filter, we need a foor loop to go through every customer
+  //for every index in customers, we need to apply the calc dist function
+  //we then add the dist key to the customers
+  customers.reduce(calcDist(antennaLocation, customers))
+
+    for(i = 0; i < customers.length; i++){
+      customers[i].dist = `${Math.round(calcDist(antennaLocation, customers[i]))} km`
+      return customers
+    }
+
+
+
+
+
+
 };
 
 /**
