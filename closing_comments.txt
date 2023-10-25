@@ -3,17 +3,18 @@
    > [ex. Computer froze and it took 15 minutes to fix]
 TODO: Describe any issues that occurred, what happened, time to fix the problem.
 
-
+no
 
 
 
 2. Were you able to complete the assessment in total, all tests passing?
 
+yes
 
 
 
 3. Do you have additional comments regarding the administration and/or content of the assessment?
 
-
+no
 
 
