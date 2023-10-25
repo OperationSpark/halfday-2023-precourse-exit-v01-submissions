@@ -83,7 +83,7 @@ const customersReduced = customers => {
     }
     return newArr//the output that is ultimately returned by the main output
   }, [])
-  return result;//main output
+  return result;//The main output
 };
 
 /**
