@@ -4,16 +4,20 @@
 TODO: Describe any issues that occurred, what happened, time to fix the problem.
 
 
+No, I did not.
+
 
 
 
 2. Were you able to complete the assessment in total, all tests passing?
 
-
+I was able to go over all of the problems. I made psuedocode and I understood everything i needed to do. The problem is implementing it.
+I had a lot of issues trying to do stuff and honestly was just stuck on a lot of it.
 
 
 3. Do you have additional comments regarding the administration and/or content of the assessment?
 
+No, the administration was good and suprisingly the challange was kind of fun, i was just left frustrated
 
 
 
